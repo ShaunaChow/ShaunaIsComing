@@ -20,8 +20,8 @@ public class ShaunaDfsServiceImpl implements ShaunaDfsService {
     private ShaunaDfsDao shaunaDfsDao;
 
     @Override
-    public boolean uploadFile(String filePath, FileChannel inputStream) throws IOException {
-        return shaunaDfsDao.uploadFile(filePath,inputStream);
+    public boolean uploadFile(String filePath, byte[] data) throws IOException {
+        return shaunaDfsDao.uploadFile(filePath,data);
     }
 
     @Override
