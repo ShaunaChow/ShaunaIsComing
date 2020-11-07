@@ -7,7 +7,6 @@ import top.shauna.shaunaiscoming.dao.ShaunaDfsDao;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 
 /**
  * @Author Shauna.Chou
@@ -21,7 +20,6 @@ public class ShaunaDfsDaoImpl implements ShaunaDfsDao {
     public ShaunaDfsDaoImpl(){
         clientService = ClientStarter.getClientService();
     }
-
 
     @Override
     public boolean uploadFile(String filePath, byte[] data) throws IOException {
