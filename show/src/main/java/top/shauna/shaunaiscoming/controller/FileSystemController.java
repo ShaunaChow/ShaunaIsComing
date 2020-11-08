@@ -57,4 +57,35 @@ public class FileSystemController {
         }
     }
 
+    @RequestMapping("/downloadtmp")
+    public ResponseEntity<byte[]> downloadtmp(String filePath){
+        /** Cache待添加 **/
+        String path = filePath;
+        System.out.println(path);
+
+        ByteBuffer byteBuffer = shaunaDfsService.downloadFile(path);
+
+        byte[] array = byteBuffer.array();
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Content-Disposition","attachment;filename="+filePath);
+
+        return new ResponseEntity<>(array,httpHeaders,HttpStatus.OK);
+    }
+
+    @PostMapping("/uploadtmp")
+    public String uploadTmp(MultipartFile file, String filePath){
+        try {
+            String path = filePath;
+            if (shaunaDfsService.uploadFile(path, file.getBytes())) {
+                return "success";
+            }else{
+                return "failed";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
+
 }
