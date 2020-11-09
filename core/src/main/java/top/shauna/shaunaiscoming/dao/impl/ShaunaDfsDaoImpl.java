@@ -3,6 +3,9 @@ package top.shauna.shaunaiscoming.dao.impl;
 import org.springframework.stereotype.Component;
 import top.shauna.dfs.ClientStarter;
 import top.shauna.dfs.service.ClientService;
+import top.shauna.rpc.bean.FoundBean;
+import top.shauna.rpc.bean.RegisterBean;
+import top.shauna.rpc.config.PubConfig;
 import top.shauna.shaunaiscoming.dao.ShaunaDfsDao;
 
 import java.io.IOException;
@@ -18,6 +21,7 @@ public class ShaunaDfsDaoImpl implements ShaunaDfsDao {
     private ClientService clientService;
 
     public ShaunaDfsDaoImpl(){
+        preparePubConfig();
         clientService = ClientStarter.getClientService();
     }
 
@@ -44,5 +48,23 @@ public class ShaunaDfsDaoImpl implements ShaunaDfsDao {
     @Override
     public boolean rmDir(String dirPath) {
         return clientService.rmDir(dirPath);
+    }
+
+    private void preparePubConfig() {
+        PubConfig pubConfig = PubConfig.getInstance();
+        pubConfig.setTimeout(100000L);
+        if (pubConfig.getRegisterBean() == null) {
+            RegisterBean registerBean = new RegisterBean("zookeeper", "39.105.89.185:2181", null);
+            pubConfig.setRegisterBean(registerBean);
+        }
+        if (pubConfig.getFoundBean() == null) {
+            RegisterBean registerBean = pubConfig.getRegisterBean();
+            FoundBean foundBean = new FoundBean(
+                    registerBean.getPotocol(),
+                    registerBean.getUrl(),
+                    registerBean.getLoc()
+            );
+            pubConfig.setFoundBean(foundBean);
+        }
     }
 }

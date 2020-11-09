@@ -1,4 +1,4 @@
-package top.shauna.shaunaiscoming.controller;
+package top.shauna.shaunaiscoming.fs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import top.shauna.shaunaiscoming.service.ShaunaDfsService;
 
@@ -73,7 +74,40 @@ public class FileSystemController {
         return new ResponseEntity<>(array,httpHeaders,HttpStatus.OK);
     }
 
+    @RequestMapping("/rmfiletmp")
+    @ResponseBody
+    public String rmFile(String filePath){
+        String path = filePath;
+
+        if (shaunaDfsService.rmFile(path)){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    @RequestMapping("/rmdirtmp")
+    @ResponseBody
+    public String rmDir(String path){
+        if (shaunaDfsService.rmDir(path)){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    @RequestMapping("/mkdirtmp")
+    @ResponseBody
+    public String mkDir(String path){
+        if (shaunaDfsService.mkdir(path)){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
     @PostMapping("/uploadtmp")
+    @ResponseBody
     public String uploadTmp(MultipartFile file, String filePath){
         try {
             String path = filePath;
