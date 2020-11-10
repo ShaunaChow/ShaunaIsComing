@@ -62,7 +62,10 @@ public class FileSystemController {
     public ResponseEntity<byte[]> downloadtmp(String filePath){
         /** Cache待添加 **/
         String path = filePath;
-        System.out.println(path);
+
+        if (!path.startsWith("/")){
+            path = "/"+path;
+        }
 
         ByteBuffer byteBuffer = shaunaDfsService.downloadFile(path);
 
@@ -111,7 +114,11 @@ public class FileSystemController {
     public String uploadTmp(MultipartFile file, String filePath){
         try {
             String path = filePath;
-            System.out.println(path);
+
+            if (!path.startsWith("/")){
+                path = "/"+path;
+            }
+
             if (shaunaDfsService.uploadFile(path, file.getBytes())) {
                 return "success";
             }else{
