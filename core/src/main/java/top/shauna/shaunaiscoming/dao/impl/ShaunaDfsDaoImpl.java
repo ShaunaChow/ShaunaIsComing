@@ -52,6 +52,7 @@ public class ShaunaDfsDaoImpl implements ShaunaDfsDao {
 
     private void preparePubConfig() {
         PubConfig pubConfig = PubConfig.getInstance();
+        pubConfig.setThreadPoolNums(10);
         pubConfig.setTimeout(100000L);
         if (pubConfig.getRegisterBean() == null) {
             RegisterBean registerBean = new RegisterBean("zookeeper", "39.105.89.185:2181", null);

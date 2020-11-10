@@ -111,6 +111,7 @@ public class FileSystemController {
     public String uploadTmp(MultipartFile file, String filePath){
         try {
             String path = filePath;
+            System.out.println(path);
             if (shaunaDfsService.uploadFile(path, file.getBytes())) {
                 return "success";
             }else{
