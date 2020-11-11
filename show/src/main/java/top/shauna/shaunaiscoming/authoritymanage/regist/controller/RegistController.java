@@ -1,9 +1,14 @@
 package top.shauna.shaunaiscoming.authoritymanage.regist.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import top.shauna.shaunaiscoming.bean.User;
+import top.shauna.shaunaiscoming.repository.UsersRepository;
+
+import java.util.Date;
 
 /**
  * @Author Shauna.Chow
@@ -13,11 +18,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/regist")
 @Controller
 public class RegistController {
+    @Autowired
+    private UsersRepository usersRepository;
 
     @PostMapping("/registServlet")
     @ResponseBody
     public String regist(String phone, String psw){
-        System.out.println(phone+"  "+psw);
-        return "okkk";
+        User user = new User(
+                null,
+                phone,
+                psw,
+                null,
+                "/",
+                new Date(),
+                0);
+        try {
+            usersRepository.addUser(phone,psw,"system","/",new Date(),0);
+            return "success";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "failed";
+        }
     }
 }
