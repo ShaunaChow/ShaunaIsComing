@@ -5,67 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>大风来啦</title>
-    <link rel="stylesheet" href="index.css">
-    <script src="animate.js"></script>
 </head>
 
 <body>
     <!-- 头部区域 -->
-    <div class="header w" th:fragment="header">
-        <!-- logo部分 -->
-        <div class="logo">
-            <a href="/"><img src="imgs/logo.png"></a>
+    <div class="head" th:fragment="header">
+        <div class="header w">
+            <!-- logo部分 -->
+            <div class="logo">
+                <a href="/"><img src="/imgs/logo.png"></a>
+            </div>
+            <!-- 导航栏 -->
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a href="#">仓库首页</a>
+                        <ul class="xiala">
+                            <li>
+                                <a href="/repository/repository.html">站点1</a>
+                            </li>
+                            <li>
+                                <a href="/repository/repository.html">站点2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">上传页面</a>
+                        <ul class="xiala">
+                            <li>
+                                <a href="/uploadtest.html">站点1</a>
+                            </li>
+                            <li>
+                                <a href="/uploadtest.html">站点2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">下载页面</a>
+                        <ul class="xiala">
+                            <li>
+                                <a href="/downloadtest.html">站点1</a>
+                            </li>
+                            <li>
+                                <a href="/downloadtest.html">站点2</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- 搜索框 -->
+            <div class="search">
+                <input type="text" value="搜索内容">
+                <button><img src="/imgs/search.png"></button>
+            </div>
+            <!-- 用户模块 -->
+            <div class="user" th:if="${session.user} eq null">
+                <a href="/login/login.html">请登录</a>
+            </div>
+            <div class="user" th:if="${session.user} ne null">
+                <a href="/info/myinfo">我的信息</a>
+            </div>
         </div>
-        <!-- 导航栏 -->
-        <div class="nav">
-            <ul>
-                <li>
-                    <a href="#">仓库首页</a>
-                    <ul class="xiala">
-                        <li>
-                            <a href="#">站点1</a>
-                        </li>
-                        <li>
-                            <a href="#">站点2</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">上传页面</a>
-                    <ul class="xiala">
-                        <li>
-                            <a href="/uploadtest.html">站点1</a>
-                        </li>
-                        <li>
-                            <a href="/uploadtest.html">站点2</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">下载页面</a>
-                    <ul class="xiala">
-                        <li>
-                            <a href="/downloadtest.html">站点1</a>
-                        </li>
-                        <li>
-                            <a href="/downloadtest.html">站点2</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <!-- 搜索框 -->
-        <div class="search">
-            <input type="text" value="搜索内容">
-            <button><img src="imgs/search.png"></button>
-        </div>
-        <!-- 用户模块 -->
-			<div class="user">
-	            <a href="/register/regist.html">请登录</a>
-	        </div>
-			<!--<div class="user">-->
-				<!--<a href="#">我的信息</a>-->
-			<!--</div>-->
     </div>
     <!-- 广告区域 -->
     <div class="banner">
@@ -98,10 +98,10 @@
             <div class="backgroudimg">
                 <ul class="bg-imgs">
                     <li>
-                        <img src="imgs/mago.jpg">
+                        <img src="/imgs/mago.jpg">
                     </li>
                     <li>
-                        <img src="imgs/bg2.jpg">
+                        <img src="/imgs/bg2.jpg">
                     </li>
                 </ul>
             </div>
@@ -133,8 +133,8 @@
             <ul>
                 <li>
                     <a href="https://www.baidu.com/s?wd=%E5%88%9D%E4%BB%A3%E5%90%B8%E8%A1%80%E9%AC%BC" target="_blank">
-                        <em><img src="imgs/hot.png"></em>
-                        <img src="imgs/box--1.png">
+                        <em><img src="/imgs/hot.png"></em>
+                        <img src="/imgs/box--1.png">
                         <h3>初代吸血鬼</h3>
                         <div class="info">
                             <span>高级</span> · 7.9万人在看
@@ -143,7 +143,7 @@
                 </li>
                 <li>
                     <a href="https://www.baidu.com/s?wd=%E5%88%9D%E4%BB%A3%E5%90%B8%E8%A1%80%E9%AC%BC" target="_blank">
-                        <img src="imgs/box--2.png">
+                        <img src="/imgs/box--2.png">
                         <h3>初代吸血鬼</h3>
                         <div class="info">
                             <span>高级</span> · 7.9万人在看
@@ -152,7 +152,7 @@
                 </li>
                 <li>
                     <a href="https://lol.qq.com/main.shtml" target="_blank">
-                        <img src="imgs/box3.png">
+                        <img src="/imgs/box3.png">
                         <h3>英雄联盟</h3>
                         <div class="info">
                             <span>高级</span> · 5.7万人在看
@@ -161,17 +161,17 @@
                 </li>
                 <li>
                     <a href="https://www.baidu.com/s?wd=%E5%90%B8%E8%A1%80%E9%AC%BC%E6%97%A5%E8%AE%B0" target="_blank">
-                        <img src="imgs/box4.png">
+                        <img src="/imgs/box4.png">
                         <h3>吸血鬼日记</h3>
                         <div class="info">
                             <span>高级</span> · 5.7万人在看
                         </div>
-                        <em><img src="imgs/hot.png"></em>
+                        <em><img src="/imgs/hot.png"></em>
                     </a>
                 </li>
                 <li>
                     <a href="https://www.baidu.com/s?wd=%E5%90%B8%E8%A1%80%E9%AC%BC%E6%97%A5%E8%AE%B0" target="_blank">
-                        <img src="imgs/box5.png">
+                        <img src="/imgs/box5.png">
                         <h3>吸血鬼日记</h3>
                         <div class="info">
                             <span>高级</span> · 5.7万人在看
@@ -180,8 +180,8 @@
                 </li>
                 <li>
                     <a href="https://www.baidu.com/s?wd=%E6%9D%83%E5%8A%9B%E7%9A%84%E6%B8%B8%E6%88%8F" target="_blank">
-                        <em><img src="imgs/hot.png"></em>
-                        <img src="imgs/box6.png">
+                        <em><img src="/imgs/hot.png"></em>
+                        <img src="/imgs/box6.png">
                         <h3>权力的游戏</h3>
                         <div class="info">
                             <span>高级</span> · 5.7万人在看
@@ -190,7 +190,7 @@
                 </li>
                 <li>
                     <a href="https://www.baidu.com/s?wd=%E6%9D%83%E5%8A%9B%E7%9A%84%E6%B8%B8%E6%88%8F" target="_blank">
-                        <img src="imgs/box7.png">
+                        <img src="/imgs/box7.png">
                         <h3>权力的游戏</h3>
                         <div class="info">
                             <span>高级</span> · 5.7万人在看
@@ -200,8 +200,8 @@
                 <li>
                     <a href="https://www.baidu.com/s?wd=%E6%88%91%E7%9A%84%E5%A4%A9%E6%89%8D%E5%A5%B3%E5%8F%8B" target="_blank">
                         <div>
-                            <img src="imgs/box8.png">
-                            <em><img src="imgs/hot.png"></em>
+                            <img src="/imgs/box8.png">
+                            <em><img src="/imgs/hot.png"></em>
                             <h3>我的天才女友</h3>
                             <div class="info">
                                 <span>高级</span> · 5.7万人在看
@@ -212,7 +212,7 @@
                 </li>
                 <li>
                     <a href="https://www.baidu.com/s?wd=%E6%88%91%E7%9A%84%E5%A4%A9%E6%89%8D%E5%A5%B3%E5%8F%8B" target="_blank">
-                        <img src="imgs/box9.png">
+                        <img src="/imgs/box9.png">
                         <h3>我的天才女友</h3>
                         <div class="info">
                             <span>高级</span> · 5.7万人在看
@@ -221,8 +221,8 @@
                 </li>
                 <li>
                     <a href="https://www.baidu.com/s?wd=%E6%9D%83%E5%8A%9B%E7%9A%84%E6%B8%B8%E6%88%8F" target="_blank">
-                        <em><img src="imgs/hot.png"></em>
-                        <img src="imgs/box10.png">
+                        <em><img src="/imgs/hot.png"></em>
+                        <img src="/imgs/box10.png">
                         <h3>权力的游戏</h3>
                         <div class="info">
                             <span>高级</span> · 5.7万人在看
@@ -241,13 +241,13 @@
         <div class="left">
             <h4>冰与雪之歌</h4>
             <div class="video-box">
-                <video src="imgs/qy.mp4" controls ></video>
+                <video src="/imgs/qy.mp4" controls ></video>
             </div>
         </div>
         <div class="right">
             <h4>吸血鬼!</h4>
             <div class="video-box">
-                <video src="imgs/cd.mp4" controls ></video>
+                <video src="/imgs/cd.mp4" controls ></video>
             </div>
         </div>
     </div>
@@ -256,7 +256,7 @@
     <div class="tail" th:fragment="tailer">
         <div class="tail-box w">
             <div class="copyright">
-                <img src="imgs/logo.png" >
+                <img src="/imgs/logo.png" >
                 <p>大风来啦欢迎您的加入！<br>© 2020年 大风来啦. 保留所有权利-浙ICP备20007040号
                 </p>
                 <a href="#">下载APP</a>
@@ -292,8 +292,11 @@
                 </dl>
             </div>
         </div>
+        <link rel="stylesheet" href="/static/index.css">
     </div>
-    <script src="index.js"></script>
+
+    <script src="/static/animate.js"></script>
+    <script src="/static/index.js"></script>
 </body>
 
 </html>

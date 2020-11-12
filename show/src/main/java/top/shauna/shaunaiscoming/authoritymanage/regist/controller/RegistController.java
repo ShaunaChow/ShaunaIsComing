@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import top.shauna.shaunaiscoming.bean.User;
 import top.shauna.shaunaiscoming.repository.UsersRepository;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @Author Shauna.Chow
@@ -22,19 +22,20 @@ public class RegistController {
     private UsersRepository usersRepository;
 
     @PostMapping("/registServlet")
-    @ResponseBody
-    public String regist(String phone, String psw){
-        User user = new User(
-                null,
-                phone,
-                psw,
-                null,
-                "/",
-                new Date(),
-                0);
+    public String regist(String phone, String psw, Map<String,String> map){
         try {
+            if (phone==null||phone.length()!=11||psw.length()<6) {
+                map.put("msg","账号或密码不符合规范！");
+                return "register/regist";
+            }
+            User exits = usersRepository.getByPhone(phone);
+            if (exits!=null){
+                map.put("msg","用户已存在！");
+                return "register/regist";
+            }
             usersRepository.addUser(phone,psw,"system","/",new Date(),0);
-            return "success";
+            map.put("msg","注册成功!");
+            return "login/login";
         }catch (Exception e){
             e.printStackTrace();
             return "failed";

@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import top.shauna.shaunaiscoming.bean.User;
 import top.shauna.shaunaiscoming.repository.UsersRepository;
+
+import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * @Author Shauna.Chow
@@ -20,13 +22,22 @@ public class LoginController {
     private UsersRepository usersRepository;
 
     @PostMapping("/loginServlet")
-    @ResponseBody
-    public String login(String phone, String psw){
-        User user = usersRepository.getByPhone(phone);
-        if (psw.equals(user.getPassword())){
-            return "success";
-        }else {
-            return "password error";
+    public String login(String phone, String psw, Map<String,String> map, HttpSession session){
+        User user;
+
+
+        try {
+            user = usersRepository.getByPhone(phone);
+            if(user==null||!psw.equals(user.getPassword())){
+                map.put("msg","账号或密码错误！");
+                return "login/login";
+            }else {
+                session.setAttribute("user",user);
+                return "success";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return "error";
         }
     }
 }
