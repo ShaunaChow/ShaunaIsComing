@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-//import top.shauna.shaunaiscoming.service.ShaunaDfsService;
+import top.shauna.shaunaiscoming.service.ShaunaDfsService;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -25,109 +25,109 @@ import java.nio.ByteBuffer;
 @Controller
 @RequestMapping("/shaunafs")
 public class FileSystemController {
-//    @Autowired
-//    private ShaunaDfsService shaunaDfsService;
-//
-//    @GetMapping("/download")
-//    public ResponseEntity<byte[]> download(String filePath, String id, String clazz){
-//        /** Cache待添加 **/
-//        String path = "/"+clazz+"/"+id+"/"+filePath;
-//
-//        ByteBuffer byteBuffer = shaunaDfsService.downloadFile(path);
-//
-//        byte[] array = byteBuffer.array();
-//
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.add("Content-Disposition","attachment;filename="+filePath);
-//
-//        return new ResponseEntity<>(array,httpHeaders,HttpStatus.OK);
-//    }
-//
-//    @PostMapping("/upload")
-//    public String upload(HttpSession session, MultipartFile file, String filePath){
-//        try {
-//            String path = "/"+session.getAttribute("clazz")+"/"+session.getAttribute("id")+"/"+filePath;
-//            if (shaunaDfsService.uploadFile(path, file.getBytes())) {
-//                return "success";
-//            }else{
-//                return "failed";
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return "error";
-//        }
-//    }
-//
-//    @RequestMapping("/downloadtmp")
-//    public ResponseEntity<byte[]> downloadtmp(String filePath){
-//        /** Cache待添加 **/
-//        String path = filePath;
-//
-//        if (!path.startsWith("/")){
-//            path = "/"+path;
-//        }
-//
-//        ByteBuffer byteBuffer = shaunaDfsService.downloadFile(path);
-//
-//        byte[] array = byteBuffer.array();
-//
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.add("Content-Disposition","attachment;filename="+filePath);
-//
-//        return new ResponseEntity<>(array,httpHeaders,HttpStatus.OK);
-//    }
-//
-//    @RequestMapping("/rmfiletmp")
-//    @ResponseBody
-//    public String rmFile(String filePath){
-//        String path = filePath;
-//
-//        if (shaunaDfsService.rmFile(path)){
-//            return "success";
-//        }else{
-//            return "error";
-//        }
-//    }
-//
-//    @RequestMapping("/rmdirtmp")
-//    @ResponseBody
-//    public String rmDir(String path){
-//        if (shaunaDfsService.rmDir(path)){
-//            return "success";
-//        }else{
-//            return "error";
-//        }
-//    }
-//
-//    @RequestMapping("/mkdirtmp")
-//    @ResponseBody
-//    public String mkDir(String path){
-//        if (shaunaDfsService.mkdir(path)){
-//            return "success";
-//        }else{
-//            return "error";
-//        }
-//    }
-//
-//    @PostMapping("/uploadtmp")
-//    @ResponseBody
-//    public String uploadTmp(MultipartFile file, String filePath){
-//        try {
-//            String path = filePath;
-//
-//            if (!path.startsWith("/")){
-//                path = "/"+path;
-//            }
-//
-//            if (shaunaDfsService.uploadFile(path, file.getBytes())) {
-//                return "success";
-//            }else{
-//                return "failed";
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return "error";
-//        }
-//    }
+    @Autowired
+    private ShaunaDfsService shaunaDfsService;
+
+    @GetMapping("/download")
+    public ResponseEntity<byte[]> download(String filePath, String id, String clazz){
+        /** Cache待添加 **/
+        String path = "/"+clazz+"/"+id+"/"+filePath;
+
+        ByteBuffer byteBuffer = shaunaDfsService.downloadFile(path);
+
+        byte[] array = byteBuffer.array();
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Content-Disposition","attachment;filename="+filePath);
+
+        return new ResponseEntity<>(array,httpHeaders,HttpStatus.OK);
+    }
+
+    @PostMapping("/upload")
+    public String upload(HttpSession session, MultipartFile file, String filePath){
+        try {
+            String path = "/"+session.getAttribute("clazz")+"/"+session.getAttribute("id")+"/"+filePath;
+            if (shaunaDfsService.uploadFile(path, file.getBytes())) {
+                return "success";
+            }else{
+                return "failed";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
+
+    @RequestMapping("/downloadtmp")
+    public ResponseEntity<byte[]> downloadtmp(String filePath){
+        /** Cache待添加 **/
+        String path = filePath;
+
+        if (!path.startsWith("/")){
+            path = "/"+path;
+        }
+
+        ByteBuffer byteBuffer = shaunaDfsService.downloadFile(path);
+
+        byte[] array = byteBuffer.array();
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Content-Disposition","attachment;filename="+filePath);
+
+        return new ResponseEntity<>(array,httpHeaders,HttpStatus.OK);
+    }
+
+    @RequestMapping("/rmfiletmp")
+    @ResponseBody
+    public String rmFile(String filePath){
+        String path = filePath;
+
+        if (shaunaDfsService.rmFile(path)){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    @RequestMapping("/rmdirtmp")
+    @ResponseBody
+    public String rmDir(String path){
+        if (shaunaDfsService.rmDir(path)){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    @RequestMapping("/mkdirtmp")
+    @ResponseBody
+    public String mkDir(String path){
+        if (shaunaDfsService.mkdir(path)){
+            return "success";
+        }else{
+            return "error";
+        }
+    }
+
+    @PostMapping("/uploadtmp")
+    @ResponseBody
+    public String uploadTmp(MultipartFile file, String filePath){
+        try {
+            String path = filePath;
+
+            if (!path.startsWith("/")){
+                path = "/"+path;
+            }
+
+            if (shaunaDfsService.uploadFile(path, file.getBytes())) {
+                return "success";
+            }else{
+                return "failed";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
 
 }
