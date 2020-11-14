@@ -9,9 +9,53 @@
     <div th:insert="~{index::header}"></div>
 
     <div class="content">
-        <a href="/" class="bt">button1</a>
-        <a href="/" class="bt">button1</a>
-        <a href="/" class="bt">button1</a>
+        <div class="left">
+            <button>全部文件</button>
+            <button>图片</button>
+            <button>文档</button>
+        </div>
+        <div class="right">
+            <div class="buttons">
+                <button>新建文件夹</button>
+                <button>上传文件</button>
+            </div>
+            <div class="dirs">
+                <a href="#">返回上一级</a>
+                <a href="#">全部文件</a><span>&gt;</span>
+            </div>
+            <div class="items">
+                <div class="dir">
+                    <div class="cover"></div>
+                    <a href="#" class="name">文件夹1</a>
+                    <a href="#" class="download">下载</a>
+                    <a href="#" class="delete">删除</a>
+                    <span>-</span>
+                </div>
+                <div class="file">
+                    <div class="cover"></div>
+                    <a href="#" class="name">文件1</a>
+                    <a href="#" class="download">下载</a>
+                    <a href="#" class="delete">删除</a>
+                    <span>32Mb</span>
+                </div>
+                <div class="file">
+                    <div class="cover"></div>
+                    <a href="#" class="name">文件1</a>
+                    <a href="#" class="download">下载</a>
+                    <a href="#" class="delete">删除</a>
+                    <span>32Mb</span>
+                </div>
+                <div class="file">
+                    <div class="cover"></div>
+                    <a href="#" class="name">文件1</a>
+                    <a href="#" class="download">下载</a>
+                    <a href="#" class="delete">删除</a>
+                    <span>32Mb</span>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
     </div>
 
     <div th:insert="~{index::tailer}"></div>
