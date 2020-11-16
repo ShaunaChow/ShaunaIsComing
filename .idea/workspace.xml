@@ -6,17 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64c68df5-0efa-4890-9d4a-624fe4d85035" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/show/src/main/resources/static/imgs/dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/show/src/main/resources/static/imgs/file.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/show/src/main/resources/static/test/js1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/show/src/main/resources/static/test/test3.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/src/main/resources/static/static/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/show/src/main/resources/static/static/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/src/main/resources/static/static/repository.css" beforeDir="false" afterPath="$PROJECT_DIR$/show/src/main/resources/static/static/repository.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/src/main/resources/static/test/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/src/main/resources/static/test/test2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/src/main/resources/templates/repository/repository.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/src/main/resources/templates/repository/repository.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/target/classes/static/static/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/show/target/classes/static/static/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/target/classes/static/static/repository.css" beforeDir="false" afterPath="$PROJECT_DIR$/show/target/classes/static/static/repository.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/target/classes/static/test/test2.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/target/classes/static/test/test2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/show/target/classes/templates/repository/repository.html" beforeDir="false" afterPath="$PROJECT_DIR$/show/target/classes/templates/repository/repository.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/core/target/" />
@@ -71,17 +63,35 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/show/src/main/resources/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
+            <state relative-caret-position="7500">
               <caret line="300" column="56" selection-start-line="300" selection-start-column="56" selection-end-line="300" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/show/src/main/resources/static/static/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="385" lean-forward="true" selection-start-line="385" selection-end-line="385" />
+            <state relative-caret-position="9600">
+              <caret line="384" column="1" selection-start-line="384" selection-start-column="1" selection-end-line="384" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="js1.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/show/src/main/resources/static/test/js1.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="863">
+              <caret line="415" column="10" lean-forward="true" selection-start-line="415" selection-start-column="10" selection-end-line="415" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test3.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/show/src/main/resources/static/test/test3.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -149,6 +159,8 @@
         <option value="$PROJECT_DIR$/show/src/main/resources/static/static/index.css" />
         <option value="$PROJECT_DIR$/show/pom.xml" />
         <option value="$PROJECT_DIR$/show/src/main/java/top/shauna/shaunaiscoming/fs/controller/FileSystemController.java" />
+        <option value="$PROJECT_DIR$/show/src/main/resources/static/test/test3.js" />
+        <option value="$PROJECT_DIR$/show/src/main/resources/static/test/js1.html" />
       </list>
     </option>
   </component>
@@ -206,9 +218,9 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="738" />
-    <option name="y" value="-15" />
-    <option name="width" value="617" />
+    <option name="x" value="1738" />
+    <option name="y" value="-482" />
+    <option name="width" value="1096" />
     <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -219,7 +231,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -485,8 +497,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -657,7 +669,10 @@
       <workItem from="1605187624434" duration="3952000" />
       <workItem from="1605233713846" duration="23198000" />
       <workItem from="1605320146377" duration="17069000" />
-      <workItem from="1605361034455" duration="442000" />
+      <workItem from="1605361034455" duration="2570000" />
+      <workItem from="1605408340310" duration="10954000" />
+      <workItem from="1605447689009" duration="1117000" />
+      <workItem from="1605509559186" duration="15859000" />
     </task>
     <servers />
   </component>
@@ -670,15 +685,15 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136538000" />
+    <option name="totallyTimeSpent" value="166596000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-471" width="1096" height="1896" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" weight="0.112934366" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.20366795" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -694,10 +709,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28135222" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28116107" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3478735" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49925262" visible="true" weight="0.16791044" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.18155947" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49925262" visible="true" weight="0.1476834" />
       <window_info anchor="right" id="Bean Validation" order="4" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
@@ -723,20 +738,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/show/src/main/java/top/shauna/shaunaiscoming/fs/controller/FileSystemController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/main/java/top/shauna/shaunaiscoming/service/ShaunaDfsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/main/java/top/shauna/shaunaiscoming/dao/ShaunaDfsDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -953,12 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="625">
           <caret line="29" column="31" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#383#384#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -980,9 +975,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1011,9 +1003,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1054,7 +1043,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/show/src/main/resources/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
+        <state relative-caret-position="7500">
           <caret line="300" column="56" selection-start-line="300" selection-start-column="56" selection-end-line="300" selection-end-column="56" />
         </state>
       </provider>
@@ -1075,8 +1064,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/show/src/main/resources/static/static/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="385" lean-forward="true" selection-start-line="385" selection-end-line="385" />
+        <state relative-caret-position="9600">
+          <caret line="384" column="1" selection-start-line="384" selection-start-column="1" selection-end-line="384" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/src/main/resources/static/test/test3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/show/src/main/resources/static/test/js1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="863">
+          <caret line="415" column="10" lean-forward="true" selection-start-line="415" selection-start-column="10" selection-end-line="415" selection-end-column="10" />
         </state>
       </provider>
     </entry>
