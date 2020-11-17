@@ -1,5 +1,6 @@
 package top.shauna.shaunaiscoming.fs.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -10,11 +11,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import top.shauna.dfs.kingmanager.bean.INode;
+import top.shauna.dfs.kingmanager.bean.INodeDirectory;
+import top.shauna.dfs.kingmanager.bean.INodeFile;
+import top.shauna.shaunaiscoming.bean.INodeBean;
+import top.shauna.shaunaiscoming.bean.MessageBean;
 import top.shauna.shaunaiscoming.service.ShaunaDfsService;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -91,8 +99,8 @@ public class FileSystemController {
 
     @RequestMapping("/rmdirtmp")
     @ResponseBody
-    public String rmDir(String path){
-        if (shaunaDfsService.rmDir(path)){
+    public String rmDir(String filePath){
+        if (shaunaDfsService.rmDir(filePath)){
             return "success";
         }else{
             return "error";
@@ -130,4 +138,26 @@ public class FileSystemController {
         }
     }
 
+
+
+    @GetMapping("/getDir")
+    @ResponseBody
+    public MessageBean getDir(String path){
+        try{
+            INodeDirectory dir = shaunaDfsService.getDir(path);
+            List<INodeBean> tmp = new ArrayList<>();
+            for (INode iNode : dir.getChildren()) {
+//                System.out.println(iNode.getStatus());
+                if (iNode.isDirectory()){
+                    tmp.add(new INodeBean(1,iNode.getName(),0));
+                }else{
+                    tmp.add(new INodeBean(0,iNode.getName(),0));    /**这里还要加一个文件长度**/
+                }
+            }
+            return new MessageBean(200, tmp);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new MessageBean(400, e.getMessage());
+        }
+    }
 }

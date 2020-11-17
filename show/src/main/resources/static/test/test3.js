@@ -1,1 +1,0 @@
-alert('okkkk3');

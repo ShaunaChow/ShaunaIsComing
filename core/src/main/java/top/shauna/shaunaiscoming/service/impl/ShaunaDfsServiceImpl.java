@@ -2,11 +2,14 @@ package top.shauna.shaunaiscoming.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import top.shauna.dfs.kingmanager.bean.INode;
+import top.shauna.dfs.kingmanager.bean.INodeDirectory;
 import top.shauna.shaunaiscoming.dao.ShaunaDfsDao;
 import top.shauna.shaunaiscoming.service.ShaunaDfsService;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.List;
 
 /**
  * @Author Shauna.Chou
@@ -41,5 +44,10 @@ public class ShaunaDfsServiceImpl implements ShaunaDfsService {
     @Override
     public boolean rmDir(String dirPath) {
         return shaunaDfsDao.rmDir(dirPath);
+    }
+
+    @Override
+    public INodeDirectory getDir(String dirPath) {
+        return shaunaDfsDao.getDir(dirPath);
     }
 }

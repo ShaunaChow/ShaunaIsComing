@@ -2,6 +2,7 @@ package top.shauna.shaunaiscoming.dao.impl;
 
 import org.springframework.stereotype.Component;
 import top.shauna.dfs.ClientStarter;
+import top.shauna.dfs.kingmanager.bean.INodeDirectory;
 import top.shauna.dfs.service.ClientService;
 import top.shauna.rpc.bean.FoundBean;
 import top.shauna.rpc.bean.RegisterBean;
@@ -48,6 +49,11 @@ public class ShaunaDfsDaoImpl implements ShaunaDfsDao {
     @Override
     public boolean rmDir(String dirPath) {
         return clientService.rmDir(dirPath);
+    }
+
+    @Override
+    public INodeDirectory getDir(String dirPath) {
+        return clientService.getDir(dirPath);
     }
 
     private void preparePubConfig() {
