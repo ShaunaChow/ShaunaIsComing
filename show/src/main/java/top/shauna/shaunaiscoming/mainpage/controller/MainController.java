@@ -31,6 +31,11 @@ public class MainController {
         return "repository/repository";
     }
 
+    @RequestMapping("/info/myinfo.html")
+    public String myInfo(){
+        return "info/myinfo";
+    }
+
     @RequestMapping("/test")
     public String test(){
         return "test";

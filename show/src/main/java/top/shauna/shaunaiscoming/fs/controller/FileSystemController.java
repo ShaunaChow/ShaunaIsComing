@@ -14,6 +14,7 @@ import top.shauna.dfs.kingmanager.bean.INode;
 import top.shauna.dfs.kingmanager.bean.INodeDirectory;
 import top.shauna.shaunaiscoming.bean.INodeBean;
 import top.shauna.shaunaiscoming.bean.MessageBean;
+import top.shauna.shaunaiscoming.bean.User;
 import top.shauna.shaunaiscoming.service.ShaunaDfsService;
 
 import javax.servlet.http.HttpSession;
@@ -65,9 +66,10 @@ public class FileSystemController {
     }
 
     @RequestMapping("/downloadtmp")
-    public ResponseEntity<byte[]> downloadtmp(String filePath){
+    public ResponseEntity<byte[]> downloadtmp(String filePath,HttpSession session){
         /** Cache待添加 **/
-        String path = filePath;
+
+        String path = getPath(filePath,session);
 
         if (!path.startsWith("/")){
             path = "/"+path;
@@ -85,8 +87,9 @@ public class FileSystemController {
 
     @RequestMapping("/rmfiletmp")
     @ResponseBody
-    public String rmFile(String filePath){
-        String path = filePath;
+    public String rmFile(String filePath,HttpSession session){
+
+        String path = getPath(filePath,session);
 
         if (shaunaDfsService.rmFile(path)){
             return "success";
@@ -97,8 +100,10 @@ public class FileSystemController {
 
     @RequestMapping("/rmdirtmp")
     @ResponseBody
-    public String rmDir(String filePath){
-        if (shaunaDfsService.rmDir(filePath)){
+    public String rmDir(String filePath, HttpSession session){
+        String path = getPath(filePath,session);
+
+        if (shaunaDfsService.rmDir(path)){
             return "success";
         }else{
             return "error";
@@ -107,8 +112,10 @@ public class FileSystemController {
 
     @RequestMapping("/mkdirtmp")
     @ResponseBody
-    public String mkDir(String filePath){
-        if (shaunaDfsService.mkdir(filePath)){
+    public String mkDir(String filePath, HttpSession session){
+        String path = getPath(filePath,session);
+
+        if (shaunaDfsService.mkdir(path)){
             return "success";
         }else{
             return "error";
@@ -117,9 +124,9 @@ public class FileSystemController {
 
     @PostMapping("/uploadtmp")
     @ResponseBody
-    public String uploadTmp(MultipartFile file, String filePath){
+    public String uploadTmp(MultipartFile file, String filePath, HttpSession session){
         try {
-            String path = filePath;
+            String path = getPath(filePath,session);
 
             if (!path.startsWith("/")){
                 path = "/"+path;
@@ -141,8 +148,9 @@ public class FileSystemController {
     @GetMapping("/getDir")
     @ResponseBody
     public MessageBean getDir(String path,HttpSession session){
-        System.out.println(session.getId());
         try{
+            path = getPath(path,session);
+
             INodeDirectory dir = shaunaDfsService.getDir(path);
             List<INodeBean> tmp = new ArrayList<>();
             for (INode iNode : dir.getChildren()) {
@@ -165,5 +173,17 @@ public class FileSystemController {
     @RequestMapping("/info")
     public String info(String filePath){
         return "WorkingOn";
+    }
+
+    private String getPath(String path,HttpSession session){
+        User user = (User) session.getAttribute("user");
+        String home = user.getHome();
+        if (!home.endsWith("/")){
+            home = home + "/";
+        }
+        if (path.startsWith("/")){
+            path = path.substring(1);
+        }
+        return home +path;
     }
 }

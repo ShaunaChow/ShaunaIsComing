@@ -24,12 +24,10 @@ public class LoginController {
     @PostMapping("/loginServlet")
     public String login(String phone, String psw, Map<String,String> map, HttpSession session){
         User user;
-
-
         try {
             user = usersRepository.getByPhone(phone);
             if(user==null||!psw.equals(user.getPassword())){
-                map.put("msg","账号或密码错误！");
+                session.setAttribute("msg","账号或密码错误！");
                 return "login/login";
             }else {
                 session.setAttribute("user",user);
@@ -39,5 +37,11 @@ public class LoginController {
             e.printStackTrace();
             return "error";
         }
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "/login/login";
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import top.shauna.shaunaiscoming.bean.User;
 import top.shauna.shaunaiscoming.repository.UsersRepository;
+import top.shauna.shaunaiscoming.service.ShaunaDfsService;
 
 import java.util.Date;
 import java.util.Map;
@@ -20,6 +21,8 @@ import java.util.Map;
 public class RegistController {
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private ShaunaDfsService shaunaDfsService;
 
     @PostMapping("/registServlet")
     public String regist(String phone, String psw, Map<String,String> map){
@@ -33,7 +36,8 @@ public class RegistController {
                 map.put("msg","用户已存在！");
                 return "register/regist";
             }
-            usersRepository.addUser(phone,psw,"system","/",new Date(),0);
+            usersRepository.addUser(phone,psw,"system","/"+phone+"/",new Date(),1);
+            shaunaDfsService.mkdir("/"+phone+"/");
             map.put("msg","注册成功!");
             return "login/login";
         }catch (Exception e){
