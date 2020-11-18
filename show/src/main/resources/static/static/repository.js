@@ -215,6 +215,10 @@ function basic(){
 }
 
 function startFileUpload(file){
+    if(file.size>10485760){
+        alert('上传文件8能超过10MB！！');
+        return;
+    }
     var formData = new FormData();
     formData.append('filePath',currentURL+file.name);
     formData.append('file',file);
