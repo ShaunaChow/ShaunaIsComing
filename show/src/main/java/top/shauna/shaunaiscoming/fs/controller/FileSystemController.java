@@ -1,6 +1,5 @@
 package top.shauna.shaunaiscoming.fs.controller;
 
-import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import top.shauna.dfs.kingmanager.bean.INode;
 import top.shauna.dfs.kingmanager.bean.INodeDirectory;
-import top.shauna.dfs.kingmanager.bean.INodeFile;
 import top.shauna.shaunaiscoming.bean.INodeBean;
 import top.shauna.shaunaiscoming.bean.MessageBean;
 import top.shauna.shaunaiscoming.service.ShaunaDfsService;
@@ -109,8 +107,8 @@ public class FileSystemController {
 
     @RequestMapping("/mkdirtmp")
     @ResponseBody
-    public String mkDir(String path){
-        if (shaunaDfsService.mkdir(path)){
+    public String mkDir(String filePath){
+        if (shaunaDfsService.mkdir(filePath)){
             return "success";
         }else{
             return "error";
@@ -142,12 +140,15 @@ public class FileSystemController {
 
     @GetMapping("/getDir")
     @ResponseBody
-    public MessageBean getDir(String path){
+    public MessageBean getDir(String path,HttpSession session){
+        System.out.println(session.getId());
         try{
             INodeDirectory dir = shaunaDfsService.getDir(path);
             List<INodeBean> tmp = new ArrayList<>();
             for (INode iNode : dir.getChildren()) {
-//                System.out.println(iNode.getStatus());
+                if (iNode.getStatus()<0) {
+                    continue;
+                }
                 if (iNode.isDirectory()){
                     tmp.add(new INodeBean(1,iNode.getName(),0));
                 }else{
@@ -159,5 +160,10 @@ public class FileSystemController {
             e.printStackTrace();
             return new MessageBean(400, e.getMessage());
         }
+    }
+
+    @RequestMapping("/info")
+    public String info(String filePath){
+        return "WorkingOn";
     }
 }
