@@ -1,5 +1,6 @@
 package top.shauna.shaunaiscoming.fs.controller;
 
+import net.sf.jmimemagic.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import top.shauna.shaunaiscoming.bean.User;
 import top.shauna.shaunaiscoming.service.ShaunaDfsService;
 
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -171,8 +173,41 @@ public class FileSystemController {
     }
 
     @RequestMapping("/info")
-    public String info(String filePath){
-        return "WorkingOn";
+    public ResponseEntity<Object> info(String filePath, HttpSession session){
+        String path = getPath(filePath,session);
+
+        if (!path.startsWith("/")){
+            path = "/"+path;
+        }
+
+        ByteBuffer byteBuffer = shaunaDfsService.downloadFile(path);
+
+        byte[] array = byteBuffer.array();
+
+        String type = null;
+        try {
+            Magic parser = new Magic() ;
+            MagicMatch match = parser.getMagicMatch(array,false);
+            type = match.getMimeType();
+        } catch (MagicParseException e) {
+            e.printStackTrace();
+        } catch (MagicMatchNotFoundException e) {
+            e.printStackTrace();
+        } catch (MagicException e) {
+            e.printStackTrace();
+        }
+
+        if (type==null){
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.add("Content-Disposition","inline;filename="+filePath);
+            httpHeaders.add("Content-Type","text/plain");
+            return new ResponseEntity<>("暂不支持的类型",httpHeaders,HttpStatus.OK);
+        }else{
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.add("Content-Disposition","inline;filename="+filePath);
+            httpHeaders.add("Content-Type",type);
+            return new ResponseEntity<>(array,httpHeaders,HttpStatus.OK);
+        }
     }
 
     private String getPath(String path,HttpSession session){

@@ -22,7 +22,7 @@ public class LoginController {
     private UsersRepository usersRepository;
 
     @PostMapping("/loginServlet")
-    public String login(String phone, String psw, Map<String,String> map, HttpSession session){
+    public String login(String phone, String psw, HttpSession session){
         User user;
         try {
             user = usersRepository.getByPhone(phone);
@@ -42,6 +42,6 @@ public class LoginController {
     @RequestMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "/login/login";
+        return "login/login";
     }
 }
