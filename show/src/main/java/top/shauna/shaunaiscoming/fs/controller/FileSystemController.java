@@ -19,7 +19,6 @@ import top.shauna.shaunaiscoming.bean.User;
 import top.shauna.shaunaiscoming.service.ShaunaDfsService;
 
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;

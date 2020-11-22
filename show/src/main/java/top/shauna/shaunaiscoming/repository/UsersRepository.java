@@ -15,10 +15,6 @@ import java.util.Date;
  * @E-Mail z1023778132@icloud.com
  */
 public interface UsersRepository extends JpaRepository<User,Integer> {
-
-    @Query(value = "select * from users where phonenum=:phone",nativeQuery = true)
-    User getByPhone(@Param("phone") String phone);
-
     @Transactional
     @Modifying
     @Query(value = "insert into users " +
@@ -26,4 +22,7 @@ public interface UsersRepository extends JpaRepository<User,Integer> {
             "values " +
             "(?1,?2,?3,?4,?5,?6)",nativeQuery = true)
     int addUser(String phonenum, String password, String name, String home, Date registdata,Integer type);
+
+    User findByPhonenum(String phonenum);
+
 }

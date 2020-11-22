@@ -8,7 +8,6 @@ import top.shauna.shaunaiscoming.bean.User;
 import top.shauna.shaunaiscoming.repository.UsersRepository;
 
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 /**
  * @Author Shauna.Chow
@@ -25,7 +24,7 @@ public class LoginController {
     public String login(String phone, String psw, HttpSession session){
         User user;
         try {
-            user = usersRepository.getByPhone(phone);
+            user = usersRepository.findByPhonenum(phone);
             if(user==null||!psw.equals(user.getPassword())){
                 session.setAttribute("msg","账号或密码错误！");
                 return "login/login";

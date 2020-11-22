@@ -28,3 +28,7 @@ insert into users
 (phonenum, password, name, home, registdata, type)
 values
 (13248139750,'LTR2004110','System','/',now(),0);
+
+select * from users;
+
+update users set name='User' where id not in (1,2,3);

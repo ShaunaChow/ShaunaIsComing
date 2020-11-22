@@ -204,13 +204,19 @@ function basic(){
                     console.log('未知错误');
                 }
             }
-        }
+        };
     };
 
     var upload = document.querySelector('.upload');
     upload.onclick = function () {
         var input = document.querySelector('#files');
         input.click();
+    };
+
+    var allFiles = document.querySelector('.allFiles');
+    allFiles.onclick = function (e) {
+        currentURL = '/';
+        freshItems();
     };
 }
 

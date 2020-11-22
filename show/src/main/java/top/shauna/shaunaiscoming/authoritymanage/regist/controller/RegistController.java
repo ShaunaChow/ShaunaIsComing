@@ -26,22 +26,28 @@ public class RegistController {
 
     @PostMapping("/registServlet")
     public String regist(String phone, String psw, Map<String,String> map){
+        User user = null;
         try {
             if (phone==null||phone.length()!=11||psw.length()<6) {
                 map.put("msg","账号或密码不符合规范！");
                 return "register/regist";
             }
-            User exits = usersRepository.getByPhone(phone);
+            User exits = usersRepository.findByPhonenum(phone);
             if (exits!=null){
                 map.put("msg","用户已存在！");
                 return "register/regist";
             }
-            usersRepository.addUser(phone,psw,"system","/"+phone+"/",new Date(),1);
+            user = new User(null,phone,psw,"User","/"+phone+"/",new Date(),1);
+            usersRepository.save(user);
             shaunaDfsService.mkdir("/"+phone+"/");
             map.put("msg","注册成功!");
             return "login/login";
         }catch (Exception e){
             e.printStackTrace();
+            try{                                    /** 事务化 要么一起成功，要么都撤销 **/
+                usersRepository.delete(user);
+                shaunaDfsService.rmDir("/"+phone+"/");
+            }catch (Exception e2){ /** 无需要操作！！ **/ }
             return "failed";
         }
     }
