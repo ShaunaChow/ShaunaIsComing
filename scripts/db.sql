@@ -5,10 +5,10 @@ use ShaunaIsComing
 -- 创建用户表
 create table users (
   id int primary key  auto_increment,
-  phonenum varchar(11) unique ,
-  password varchar(30) ,
-  name varchar (20) ,
-  home varchar (20) ,
+  mail varchar(255) unique ,
+  password varchar(255) ,
+  name varchar (255) ,
+  home varchar (255) ,
   registdata date ,
   type int
 );
@@ -16,17 +16,17 @@ create table users (
 create index phoneindex on users (phonenum);
 
 insert into users
-(phonenum, password, name, home, registdata, type)
+(mail, password, name, home, registdata, type)
 values
-(17318588134,'zxf1023778132','Master','/',now(),0);
+(17318588134,'$2a$10$iyCfRrSl/BsoooN4DNdVcuF10s7iGAOrhyu67nZrErdrOjEy.AuiK','Master','/',now(),0);
 
 insert into users
-(phonenum, password, name, home, registdata, type)
+(mail, password, name, home, registdata, type)
 values
 (15869100891,'AAaa1234','System','/',now(),0);
 
 insert into users
-(phonenum, password, name, home, registdata, type)
+(mail, password, name, home, registdata, type)
 values
 (13248139750,'LTR2004110','System','/',now(),0);
 
@@ -40,7 +40,7 @@ create table roles (
   id int primary key auto_increment,
   roleName varchar(50) default null,
   description varchar(255) default null,
-  createTime timestamp,
+  createTime timestamp default now(),
   updateTime timestamp,
   unique key unique_roleName (roleName)
 );
@@ -49,7 +49,7 @@ create table roles (
 create table user_role (
   userId int not null ,
   roleId int not null ,
-  createTime timestamp ,
+  createTime timestamp default now(),
   creator varchar(255),
   primary key (userId, roleId)
 );
@@ -66,7 +66,7 @@ create table permission (
 create table role_permission (
   roleId int not null ,
   permissionId int not null ,
-  createTime timestamp ,
+  createTime timestamp default now(),
   creator varchar(255),
   primary key (roleId, permissionId)
 );
@@ -92,3 +92,72 @@ insert into permission
 values
 ('1','/r/r1'),
 ('2','/r/r2');
+
+insert into role_permission
+(roleId,permissionId)
+values
+(1,1),
+(1,2),
+(2,1);
+
+show tables;
+
+select * from permission where id in (
+  select permissionId from role_permission where roleId in (
+      select roleId from user_role where userId in (
+          select id from users where phonenum='17318588134'
+      )
+  )
+)
+
+
+
+create table oauth_client_details(
+  client_id varchar(255) primary key ,
+  resource_ids varchar (255),
+  client_secret varchar (255),
+  scope varchar (255),
+  authorized_grant_types varchar (255),
+  web_server_redirect_uri varchar (255),
+  authorities varchar (255),
+  access_token_validity int(11),
+  refresh_token_validity int(11),
+  additional_information varchar (255),
+  create_time timestamp default now(),
+  archived int ,
+  trusted int,
+  autoapprove varchar (255)
+);
+
+INSERT INTO oauth_client_details VALUES ('c1', 'res1',
+'123', 'ROLE_ADMIN,ROLE_USER,ROLE_API',
+'client_credentials,password,authorization_code,implicit,refresh_token', 'http://www.shauna.top',
+NULL, 7200, 259200, NULL, now(), 0, 0, 'false'),
+('c2', 'res2',
+'123', 'ROLE_API',
+'client_credentials,password,authorization_code,implicit,refresh_token', 'http://www.shauna.top',
+NULL, 31536000, 2592000, NULL, now(), 0, 0, 'false');
+
+select * from oauth_client_details;
+
+
+CREATE TABLE oauth_code (
+  create_time timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  code varchar(255),
+  authentication blob,
+  INDEX  code_index (code) USING BTREE
+);
+
+
+select * from oauth_code;
+
+
+show tables;
+
+
+
+
+
+
+
+

@@ -32,7 +32,7 @@ public class RegistController {
                 map.put("msg","账号或密码不符合规范！");
                 return "register/regist";
             }
-            User exits = usersRepository.findByPhonenum(phone);
+            User exits = usersRepository.findByMail(phone);
             if (exits!=null){
                 map.put("msg","用户已存在！");
                 return "register/regist";

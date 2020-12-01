@@ -24,7 +24,7 @@ public class LoginController {
     public String login(String phone, String psw, HttpSession session){
         User user;
         try {
-            user = usersRepository.findByPhonenum(phone);
+            user = usersRepository.findByMail(phone);
             if(user==null||!psw.equals(user.getPassword())){
                 session.setAttribute("msg","账号或密码错误！");
                 return "login/login";
